@@ -13,6 +13,7 @@ interface Props {
   canonicalUrl?: string;
   siteName?: string;
   locale?: string;
+  preloadImage?: string;
   fonts?: string[];
   colors?: {
     primary?: string;
@@ -35,6 +36,7 @@ const {
   canonicalUrl,
   siteName = 'Hotmart Landings',
   locale = 'es_LA',
+  preloadImage,
   fonts,
   colors,
   tracking,
@@ -58,6 +60,7 @@ const bodyText = isDark ? '#f3f4f6' : '#111827';
 
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />

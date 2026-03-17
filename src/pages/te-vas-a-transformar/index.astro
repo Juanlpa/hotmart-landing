@@ -48,6 +48,7 @@ const beforeAfterTestimonials = [
   description={product.seo.description}
   ogImage={`https://hotmart-landing.vercel.app${product.seo.ogImage}`}
   canonicalUrl={`https://hotmart-landing.vercel.app/${product.slug}/`}
+  preloadImage={`${imgBase}/coach-action.jpg`}
   colors={product.colors}
   tracking={product.tracking}
   fonts={['https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap']}
@@ -129,9 +130,9 @@ const beforeAfterTestimonials = [
         <div class="absolute -inset-4 bg-gradient-to-br from-[#833cf6]/20 to-transparent rounded-3xl blur-2xl"></div>
         <img
           src={`${imgBase}/equipo.jpg`}
-          alt="Equipo Te Vas a Transformar"
+          alt="Equipo de entrenamiento del programa Te Vas a Transformar"
           class="relative rounded-2xl w-full object-cover shadow-2xl border border-white/5"
-          loading="eager"
+          loading="lazy"
         />
       </div>
     </div>
@@ -249,7 +250,7 @@ const beforeAfterTestimonials = [
       <div class="absolute -inset-2 bg-gradient-to-r from-[#833cf6]/10 to-transparent rounded-2xl blur-xl"></div>
       <img
         src={`${imgBase}/equipo-completo.jpg`}
-        alt="Equipo completo Te Vas a Transformar"
+        alt="Equipo completo de coaches y participantes del Método TVT"
         class="relative rounded-2xl w-full object-cover shadow-xl border border-white/5 max-h-[400px] object-top"
         loading="lazy"
       />
@@ -367,7 +368,7 @@ const beforeAfterTestimonials = [
           <div class="relative overflow-hidden">
             <img
               src={t.image}
-              alt={`Transformación de ${t.name}`}
+              alt={`Resultado antes y después de ${t.name} con el Método TVT`}
               class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
               loading="lazy"
             />
@@ -471,7 +472,7 @@ const beforeAfterTestimonials = [
   <div class="container mx-auto max-w-6xl text-center">
     <img
       src={`${imgBase}/logo-white.png`}
-      alt="Te Vas a Transformar"
+      alt="Logo Método TVT - Te Vas a Transformar"
       class="h-8 w-auto mx-auto mb-6 opacity-60"
       loading="lazy"
     />

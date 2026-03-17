@@ -1,7 +1,7 @@
 # AI AGENT CONTEXT — Hotmart Landings Project
 
 > **Purpose**: This file is the single source of truth for any AI agent working on this project. Read this ENTIRELY before executing any task. It eliminates the need to scan the full codebase.
-> **Last updated**: 2026-03-16
+> **Last updated**: 2026-03-17
 
 ---
 
@@ -24,6 +24,7 @@
 | Tailwind CSS | 4.x | Via `@tailwindcss/vite` plugin (NOT `@astrojs/tailwind`) |
 | Framer Motion | latest | Animations for React components |
 | Vercel | adapter | `@astrojs/vercel` — static deploy |
+| Sitemap | `@astrojs/sitemap` | Auto-generated, dashboard excluded |
 | TypeScript | strict | All files are typed |
 
 ### CRITICAL: Tailwind v4 Setup
@@ -73,7 +74,7 @@ src/utils/hotmart.ts builds affiliate links with UTMs
 
 ```
 hotmart-landings/
-├── astro.config.mjs                    # Astro + React + Tailwind(vite) + Vercel
+├── astro.config.mjs                    # Astro + React + Sitemap + Tailwind(vite) + Vercel (site: hotmart-landing.vercel.app)
 ├── src/
 │   ├── config/
 │   │   ├── products.ts                 # ALL product data lives here (types + data)
@@ -117,7 +118,9 @@ hotmart-landings/
 ├── public/assets/[product-slug]/       # Product-specific images
 ├── designs/[product-slug]/             # Stitch design exports (reference)
 ├── docs/PRODUCT-BRIEFS/                # Product briefs per product
-└── .claude/skills/                     # 4 custom Claude skills
+├── public/robots.txt                    # Crawl rules + sitemap reference
+├── public/favicon.svg                   # SVG favicon (TVT brand colors)
+└── .claude/skills/                     # 6 custom Claude skills
 ```
 
 ---
@@ -228,6 +231,7 @@ Located in `.claude/skills/`:
 | `stitch-to-astro` | Converting a Stitch design to Astro components |
 | `tracking-integrator` | Setting up or debugging tracking pixels |
 | `vercel-deployer` | Deploying, configuring domains, Vercel management |
+| `seo-optimizer` | SEO technical optimization, structured data, sitemap, Core Web Vitals |
 
 ---
 
@@ -240,7 +244,7 @@ Located in `.claude/skills/`:
 | 3. Landing content | IN PROGRESS | TVT landing built, more products pending |
 | 4. Custom skills | DONE | 4 skills in .claude/skills/ |
 | 5. First real landing | DONE (active) | TVT landing complete, tracking configured, deployed to Vercel |
-| 6. SEO setup | DONE | Google Search Console verified, indexation requested |
+| 6. SEO setup | DONE | Search Console verified, structured data (Product+FAQ), sitemap, robots.txt, favicon, LCP preload |
 
 ### Current State
 - 1 product configured: `te-vas-a-transformar` (Método TVT)
@@ -253,7 +257,9 @@ Located in `.claude/skills/`:
 - **Vercel URL**: `https://hotmart-landing.vercel.app/`
 - **Deployed**: auto-deploy on push to `main`
 - **Google Search Console**: verified (meta tag in LandingLayout.astro)
-- **Custom Skills**: 5 (landing-builder, conversion-optimizer, stitch-to-astro, tracking-integrator, vercel-deployer)
+- **Custom Skills**: 6 (landing-builder, conversion-optimizer, stitch-to-astro, tracking-integrator, vercel-deployer, seo-optimizer)
+- **SEO**: Canonical URLs, OG tags (url/locale/site_name), JSON-LD (Product+Offer+FAQ), sitemap, robots.txt, favicon, LCP preload, descriptive alt texts
+- **Sitemap**: `sitemap-index.xml` (auto-generated, dashboard excluded)
 
 ### Product: Te Vas a Transformar (Método TVT)
 - **Slug**: `te-vas-a-transformar`
