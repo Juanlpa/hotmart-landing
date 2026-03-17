@@ -248,6 +248,8 @@ Located in `.claude/skills/`:
 - TVT landing page: COMPLETE (active, tracking configured)
 - Legal pages: privacy policy + terms of use created
 - GitHub repo: `https://github.com/Juanlpa/hotmart-landing.git`
+- **Vercel URL**: `https://hotmart-landing.vercel.app/`
+- **Deployed**: auto-deploy on push to `main`
 
 ### Product: Te Vas a Transformar (Método TVT)
 - **Slug**: `te-vas-a-transformar`
