@@ -120,7 +120,7 @@ hotmart-landings/
 ├── docs/PRODUCT-BRIEFS/                # Product briefs per product
 ├── public/robots.txt                    # Crawl rules + sitemap reference
 ├── public/favicon.svg                   # SVG favicon (TVT brand colors)
-└── .claude/skills/                     # 6 custom Claude skills
+└── .claude/skills/                     # 7 custom Claude skills
 ```
 
 ---
@@ -232,6 +232,7 @@ Located in `.claude/skills/`:
 | `tracking-integrator` | Setting up or debugging tracking pixels |
 | `vercel-deployer` | Deploying, configuring domains, Vercel management |
 | `seo-optimizer` | SEO technical optimization, structured data, sitemap, Core Web Vitals |
+| `ads-campaign-builder` | Create ad campaigns for Meta, TikTok, Google Ads ($5-10/day budget, Latam+Brasil) |
 
 ---
 
@@ -257,7 +258,7 @@ Located in `.claude/skills/`:
 - **Vercel URL**: `https://hotmart-landing.vercel.app/`
 - **Deployed**: auto-deploy on push to `main`
 - **Google Search Console**: verified (meta tag in LandingLayout.astro)
-- **Custom Skills**: 6 (landing-builder, conversion-optimizer, stitch-to-astro, tracking-integrator, vercel-deployer, seo-optimizer)
+- **Custom Skills**: 7 (landing-builder, conversion-optimizer, stitch-to-astro, tracking-integrator, vercel-deployer, seo-optimizer, ads-campaign-builder)
 - **SEO**: Canonical URLs, OG tags (url/locale/site_name), JSON-LD (Product+Offer+FAQ), sitemap, robots.txt, favicon, LCP preload, descriptive alt texts
 - **Sitemap**: `sitemap-index.xml` (auto-generated, dashboard excluded)
 
