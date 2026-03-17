@@ -1,17 +1,257 @@
 ---
+import '../styles/global.css';
+import '../styles/animations.css';
+import { getAllProducts } from '../config/products';
 
+const products = getAllProducts();
+const activeCount = products.filter(p => p.status === 'active').length;
+const pausedCount = products.filter(p => p.status === 'paused').length;
+const draftCount = products.filter(p => p.status === 'draft').length;
+const totalProducts = products.length;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Panel Interno | Hotmart Landings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-950 text-gray-100 font-sans min-h-screen">
+
+    <!-- Header -->
+    <header class="border-b border-gray-800 bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center font-bold text-gray-950 text-sm">H</div>
+          <div>
+            <h1 class="text-lg font-bold text-white leading-tight">Hotmart Landings</h1>
+            <p class="text-xs text-gray-500">Panel Interno</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-gray-500 hidden sm:inline">Solo uso interno</span>
+          <span class="inline-block w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+
+      <!-- Stats Cards -->
+      <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-4">
+          <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Total</p>
+          <p class="text-3xl font-bold text-white">{totalProducts}</p>
+          <p class="text-xs text-gray-500 mt-1">productos</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-4">
+          <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Activos</p>
+          <p class="text-3xl font-bold text-green-400">{activeCount}</p>
+          <p class="text-xs text-gray-500 mt-1">recibiendo tráfico</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-4">
+          <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Pausados</p>
+          <p class="text-3xl font-bold text-yellow-400">{pausedCount}</p>
+          <p class="text-xs text-gray-500 mt-1">sin ads activos</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-4">
+          <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Borradores</p>
+          <p class="text-3xl font-bold text-gray-400">{draftCount}</p>
+          <p class="text-xs text-gray-500 mt-1">en desarrollo</p>
+        </div>
+      </section>
+
+      <!-- Quick Actions -->
+      <section class="mb-8">
+        <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Acciones Rápidas</h2>
+        <div class="flex flex-wrap gap-3">
+          <a href="https://analytics.google.com/" target="_blank" rel="noopener noreferrer"
+            class="flex items-center gap-2 bg-gray-900 border border-gray-800 hover:border-blue-500/50 rounded-lg px-4 py-2.5 text-sm transition-colors group">
+            <span class="w-6 h-6 bg-blue-500/20 rounded flex items-center justify-center text-xs">GA</span>
+            <span class="text-gray-300 group-hover:text-white">Google Analytics</span>
+          </a>
+          <a href="https://business.facebook.com/adsmanager" target="_blank" rel="noopener noreferrer"
+            class="flex items-center gap-2 bg-gray-900 border border-gray-800 hover:border-blue-600/50 rounded-lg px-4 py-2.5 text-sm transition-colors group">
+            <span class="w-6 h-6 bg-blue-600/20 rounded flex items-center justify-center text-xs">FB</span>
+            <span class="text-gray-300 group-hover:text-white">Facebook Ads</span>
+          </a>
+          <a href="https://app-vlc.hotmart.com/" target="_blank" rel="noopener noreferrer"
+            class="flex items-center gap-2 bg-gray-900 border border-gray-800 hover:border-orange-500/50 rounded-lg px-4 py-2.5 text-sm transition-colors group">
+            <span class="w-6 h-6 bg-orange-500/20 rounded flex items-center justify-center text-xs">HM</span>
+            <span class="text-gray-300 group-hover:text-white">Hotmart Dashboard</span>
+          </a>
+          <a href="https://tagmanager.google.com/" target="_blank" rel="noopener noreferrer"
+            class="flex items-center gap-2 bg-gray-900 border border-gray-800 hover:border-teal-500/50 rounded-lg px-4 py-2.5 text-sm transition-colors group">
+            <span class="w-6 h-6 bg-teal-500/20 rounded flex items-center justify-center text-xs">GTM</span>
+            <span class="text-gray-300 group-hover:text-white">Tag Manager</span>
+          </a>
+          <a href="https://vercel.com/dashboard" target="_blank" rel="noopener noreferrer"
+            class="flex items-center gap-2 bg-gray-900 border border-gray-800 hover:border-gray-500/50 rounded-lg px-4 py-2.5 text-sm transition-colors group">
+            <span class="w-6 h-6 bg-gray-500/20 rounded flex items-center justify-center text-xs">VC</span>
+            <span class="text-gray-300 group-hover:text-white">Vercel</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Products List -->
+      <section>
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Productos</h2>
+          {totalProducts > 0 && (
+            <span class="text-xs text-gray-600">{totalProducts} producto{totalProducts !== 1 ? 's' : ''}</span>
+          )}
+        </div>
+
+        {products.length > 0 ? (
+          <div class="space-y-3">
+            {products.map((product) => (
+              <div class="bg-gray-900 border border-gray-800 rounded-xl p-4 md:p-5 hover:border-gray-700 transition-colors">
+                <div class="flex flex-col md:flex-row md:items-center gap-4">
+
+                  {/* Left: Product Info */}
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-2 mb-1">
+                      <span class:list={[
+                        'inline-block w-2 h-2 rounded-full flex-shrink-0',
+                        product.status === 'active' && 'bg-green-500',
+                        product.status === 'paused' && 'bg-yellow-500',
+                        (!product.status || product.status === 'draft') && 'bg-gray-500',
+                      ]} />
+                      <h3 class="text-white font-semibold truncate">{product.name}</h3>
+                      <span class:list={[
+                        'text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded font-medium flex-shrink-0',
+                        product.status === 'active' && 'bg-green-500/10 text-green-400',
+                        product.status === 'paused' && 'bg-yellow-500/10 text-yellow-400',
+                        (!product.status || product.status === 'draft') && 'bg-gray-500/10 text-gray-400',
+                      ]}>
+                        {product.status || 'draft'}
+                      </span>
+                    </div>
+                    <p class="text-sm text-gray-500 truncate">{product.description}</p>
+                    {product.notes && (
+                      <p class="text-xs text-gray-600 mt-1 italic">{product.notes}</p>
+                    )}
+                  </div>
+
+                  {/* Center: Price */}
+                  <div class="flex items-center gap-4 md:gap-6">
+                    <div class="text-center">
+                      <p class="text-xs text-gray-500">Precio</p>
+                      <p class="text-lg font-bold text-white">
+                        {product.currency} {product.currentPrice}
+                      </p>
+                      <p class="text-xs text-gray-600 line-through">
+                        {product.currency} {product.originalPrice}
+                      </p>
+                    </div>
+
+                    <div class="text-center">
+                      <p class="text-xs text-gray-500">Tracking</p>
+                      <div class="flex gap-1 mt-1">
+                        <span class:list={['text-[10px] px-1.5 py-0.5 rounded', product.tracking.facebookPixelId ? 'bg-blue-500/20 text-blue-400' : 'bg-gray-800 text-gray-600']}>FB</span>
+                        <span class:list={['text-[10px] px-1.5 py-0.5 rounded', product.tracking.googleAnalyticsId ? 'bg-blue-500/20 text-blue-400' : 'bg-gray-800 text-gray-600']}>GA</span>
+                        <span class:list={['text-[10px] px-1.5 py-0.5 rounded', product.tracking.gtmId ? 'bg-teal-500/20 text-teal-400' : 'bg-gray-800 text-gray-600']}>GTM</span>
+                        <span class:list={['text-[10px] px-1.5 py-0.5 rounded', product.tracking.hotmartPixelId ? 'bg-orange-500/20 text-orange-400' : 'bg-gray-800 text-gray-600']}>HM</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right: Links */}
+                  <div class="flex items-center gap-2 flex-shrink-0">
+                    <a href={`/${product.slug}/`} target="_blank" rel="noopener noreferrer"
+                      class="bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white text-xs px-3 py-2 rounded-lg transition-colors">
+                      Ver Landing
+                    </a>
+                    {product.externalLinks?.hotmartDashboard && (
+                      <a href={product.externalLinks.hotmartDashboard} target="_blank" rel="noopener noreferrer"
+                        class="bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white text-xs px-3 py-2 rounded-lg transition-colors">
+                        Hotmart
+                      </a>
+                    )}
+                    {product.externalLinks?.facebookAdsManager && (
+                      <a href={product.externalLinks.facebookAdsManager} target="_blank" rel="noopener noreferrer"
+                        class="bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white text-xs px-3 py-2 rounded-lg transition-colors">
+                        FB Ads
+                      </a>
+                    )}
+                    {product.externalLinks?.googleAnalyticsDashboard && (
+                      <a href={product.externalLinks.googleAnalyticsDashboard} target="_blank" rel="noopener noreferrer"
+                        class="bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white text-xs px-3 py-2 rounded-lg transition-colors">
+                        Analytics
+                      </a>
+                    )}
+                    <a href={product.affiliateLink} target="_blank" rel="noopener noreferrer"
+                      class="bg-green-600 hover:bg-green-500 text-white text-xs px-3 py-2 rounded-lg transition-colors">
+                      Link Afiliado
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <!-- Empty State -->
+          <div class="bg-gray-900 border border-dashed border-gray-700 rounded-xl p-8 md:p-12 text-center">
+            <div class="w-16 h-16 bg-gray-800 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0022 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            </div>
+            <h3 class="text-lg font-semibold text-white mb-2">Sin productos todavía</h3>
+            <p class="text-gray-500 text-sm max-w-md mx-auto mb-6">
+              Agrega tu primer producto en
+              <code class="bg-gray-800 text-green-400 px-1.5 py-0.5 rounded text-xs mx-0.5">src/config/products.ts</code>
+              y aparecerá aquí automáticamente.
+            </p>
+            <div class="bg-gray-800/50 rounded-lg p-4 max-w-lg mx-auto text-left">
+              <p class="text-xs text-gray-500 mb-2 uppercase tracking-wider">Para crear una landing necesitas:</p>
+              <ul class="text-sm text-gray-400 space-y-1.5">
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-gray-600 rounded-full flex-shrink-0"></span>
+                  Producto de Hotmart + link de afiliado
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-gray-600 rounded-full flex-shrink-0"></span>
+                  Diseño aprobado de Google Stitch
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-gray-600 rounded-full flex-shrink-0"></span>
+                  IDs de tracking (FB Pixel, GA4, GTM)
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-gray-600 rounded-full flex-shrink-0"></span>
+                  Copy de venta (headline, beneficios, testimonios, FAQs)
+                </li>
+              </ul>
+            </div>
+          </div>
+        )}
+      </section>
+
+      <!-- Future Features Placeholder -->
+      <section class="mt-12 border border-dashed border-gray-800 rounded-xl p-6 text-center">
+        <p class="text-xs text-gray-600 uppercase tracking-wider mb-2">Próximamente</p>
+        <div class="flex flex-wrap justify-center gap-3 text-xs text-gray-500">
+          <span class="bg-gray-900 px-3 py-1.5 rounded-lg">Analytics en tiempo real</span>
+          <span class="bg-gray-900 px-3 py-1.5 rounded-lg">Datos de ventas de Hotmart API</span>
+          <span class="bg-gray-900 px-3 py-1.5 rounded-lg">A/B Testing dashboard</span>
+          <span class="bg-gray-900 px-3 py-1.5 rounded-lg">ROI por producto</span>
+          <span class="bg-gray-900 px-3 py-1.5 rounded-lg">Alertas de conversión</span>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 mt-12 py-4">
+      <p class="text-center text-xs text-gray-700">
+        Panel interno — No indexado por buscadores — Solo uso administrativo
+      </p>
+    </footer>
+
+  </body>
 </html>

@@ -1,0 +1,33 @@
+---
+interface Props {
+  productName?: string;
+}
+
+const { productName } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-gray-900 text-gray-400 py-8 px-4">
+  <div class="max-w-4xl mx-auto text-center text-sm space-y-4">
+    <p>
+      Este sitio no es parte de Facebook ni de Meta Platforms Inc.
+      Este sitio no está respaldado por Facebook de ninguna manera.
+      Facebook es una marca registrada de Meta Platforms Inc.
+    </p>
+
+    <p>
+      Los resultados pueden variar de persona a persona.
+      {productName && `${productName} es un producto digital vendido a través de la plataforma Hotmart.`}
+    </p>
+
+    <div class="flex justify-center gap-4 text-xs">
+      <a href="#" class="hover:text-white transition-colors">Política de Privacidad</a>
+      <span>|</span>
+      <a href="#" class="hover:text-white transition-colors">Términos de Uso</a>
+    </div>
+
+    <p class="text-xs text-gray-600">
+      &copy; {year} Todos los derechos reservados.
+    </p>
+  </div>
+</footer>

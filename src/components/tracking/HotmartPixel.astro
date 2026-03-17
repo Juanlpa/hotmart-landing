@@ -1,0 +1,25 @@
+---
+interface Props {
+  pixelId: string;
+}
+
+const { pixelId } = Astro.props;
+---
+
+<!-- Hotmart Pixel -->
+<script is:inline define:vars={{ pixelId }}>
+  (function() {
+    var script = document.createElement('script');
+    script.src = 'https://scripts.hotmart.com/tag.js?id=' + pixelId;
+    script.async = true;
+    document.head.appendChild(script);
+    window.hotmartPixel = {
+      id: pixelId,
+      track: function(event, data) {
+        if (window._hotmart && window._hotmart.push) {
+          window._hotmart.push(['track', event, data]);
+        }
+      }
+    };
+  })();
+</script>

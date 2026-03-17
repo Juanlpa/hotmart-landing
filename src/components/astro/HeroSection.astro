@@ -1,0 +1,40 @@
+---
+interface Props {
+  headline: string;
+  subheadline: string;
+  backgroundImage?: string;
+  videoUrl?: string;
+  class?: string;
+}
+
+const { headline, subheadline, backgroundImage, videoUrl, class: className } = Astro.props;
+---
+
+<section
+  class:list={[
+    'relative min-h-[80vh] flex items-center justify-center px-4 py-16 md:py-24 overflow-hidden',
+    className,
+  ]}
+  style={backgroundImage ? `background-image: url(${backgroundImage}); background-size: cover; background-position: center;` : ''}
+>
+  {backgroundImage && (
+    <div class="absolute inset-0 bg-black/50 z-0"></div>
+  )}
+
+  <div class="relative z-10 max-w-4xl mx-auto text-center">
+    <h1
+      class="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up"
+      set:html={headline}
+    />
+    <p
+      class="text-lg md:text-xl lg:text-2xl opacity-90 mb-8 max-w-2xl mx-auto animate-fade-in-up"
+      style="animation-delay: 0.2s"
+    >
+      {subheadline}
+    </p>
+
+    <div class="animate-fade-in-up" style="animation-delay: 0.4s">
+      <slot />
+    </div>
+  </div>
+</section>

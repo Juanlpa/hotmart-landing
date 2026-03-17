@@ -1,0 +1,42 @@
+---
+import type { Bonus } from '../../config/products';
+
+interface Props {
+  bonuses: Bonus[];
+  title?: string;
+}
+
+const { bonuses, title = '¡Y eso no es todo! También recibirás:' } = Astro.props;
+---
+
+<section class="py-16 md:py-24 px-4 bg-gradient-to-b from-yellow-50 to-white">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-2xl md:text-4xl font-bold text-center mb-12">
+      {title}
+    </h2>
+
+    <div class="space-y-6">
+      {bonuses.map((bonus, index) => (
+        <div
+          class="flex flex-col md:flex-row items-start gap-4 p-6 bg-white rounded-2xl shadow-md border-l-4 border-yellow-400"
+          style={`animation-delay: ${index * 0.15}s`}
+        >
+          <div class="flex-shrink-0">
+            <span class="inline-block bg-yellow-400 text-yellow-900 text-sm font-bold px-3 py-1 rounded-full">
+              BONO #{index + 1}
+            </span>
+          </div>
+          <div>
+            <h3 class="text-lg md:text-xl font-bold mb-2">{bonus.name}</h3>
+            <p class="text-gray-600">{bonus.description}</p>
+            {bonus.value && (
+              <p class="mt-2 text-sm text-gray-500">
+                Valor: <span class="line-through">{bonus.value}</span> — <strong class="text-green-600">GRATIS</strong>
+              </p>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

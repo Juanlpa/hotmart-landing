@@ -1,0 +1,104 @@
+---
+import '../styles/global.css';
+import '../styles/animations.css';
+import FacebookPixel from '../components/tracking/FacebookPixel.astro';
+import GoogleTagManager from '../components/tracking/GoogleTagManager.astro';
+import GoogleAnalytics from '../components/tracking/GoogleAnalytics.astro';
+import HotmartPixel from '../components/tracking/HotmartPixel.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+  fonts?: string[];
+  colors?: {
+    primary?: string;
+    secondary?: string;
+    accent?: string;
+    background?: string;
+  };
+  tracking?: {
+    facebookPixelId?: string;
+    googleAnalyticsId?: string;
+    gtmId?: string;
+    hotmartPixelId?: string;
+  };
+}
+
+const {
+  title,
+  description,
+  ogImage,
+  canonicalUrl,
+  fonts,
+  colors,
+  tracking,
+} = Astro.props;
+
+const isDark = colors?.background && colors.background !== '#ffffff' && colors.background !== '#f1faee';
+const bodyBg = colors?.background || '#ffffff';
+const bodyText = isDark ? '#f3f4f6' : '#111827';
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <title>{title}</title>
+
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+    <!-- Preconnect to common domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Custom fonts -->
+    {fonts && fonts.map((fontUrl) => (
+      <link href={fontUrl} rel="stylesheet" />
+    ))}
+
+    <!-- Custom CSS variables per product -->
+    {colors && (
+      <style define:vars={{
+        'color-product-primary': colors.primary || '#e63946',
+        'color-product-secondary': colors.secondary || '#1d3557',
+        'color-product-accent': colors.accent || '#f4a261',
+        'color-product-bg': colors.background || '#f1faee',
+      }}></style>
+    )}
+
+    <!-- Tracking Scripts -->
+    {tracking?.gtmId && <GoogleTagManager gtmId={tracking.gtmId} />}
+    {tracking?.googleAnalyticsId && <GoogleAnalytics gaId={tracking.googleAnalyticsId} />}
+    {tracking?.facebookPixelId && <FacebookPixel pixelId={tracking.facebookPixelId} />}
+    {tracking?.hotmartPixelId && <HotmartPixel pixelId={tracking.hotmartPixelId} />}
+  </head>
+  <body
+    class="min-h-screen antialiased"
+    style={`background-color: ${bodyBg}; color: ${bodyText};`}
+  >
+    <slot />
+
+    <!-- UTM capture script -->
+    <script>
+      import { captureUtmParams } from '../utils/utm';
+      captureUtmParams();
+    </script>
+  </body>
+</html>
