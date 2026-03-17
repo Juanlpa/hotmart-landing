@@ -1,7 +1,7 @@
 # AI AGENT CONTEXT — Hotmart Landings Project
 
 > **Purpose**: This file is the single source of truth for any AI agent working on this project. Read this ENTIRELY before executing any task. It eliminates the need to scan the full codebase.
-> **Last updated**: 2026-03-11
+> **Last updated**: 2026-03-16
 
 ---
 
@@ -105,7 +105,9 @@ hotmart-landings/
 │   ├── pages/
 │   │   ├── index.astro                 # Internal dashboard (noindex)
 │   │   └── [product-slug]/
-│   │       └── index.astro             # Product landing page
+│   │       ├── index.astro             # Product landing page
+│   │       ├── privacidad.astro        # Privacy policy page
+│   │       └── terminos.astro          # Terms of use page
 │   ├── styles/
 │   │   ├── global.css                  # Tailwind v4 import + theme
 │   │   └── animations.css              # Reusable CSS animations
@@ -236,25 +238,31 @@ Located in `.claude/skills/`:
 | 2. Base components | DONE | All React + Astro + tracking components |
 | 3. Landing content | IN PROGRESS | TVT landing built, more products pending |
 | 4. Custom skills | DONE | 4 skills in .claude/skills/ |
-| 5. First real landing | DONE (draft) | TVT landing complete, needs tracking IDs |
+| 5. First real landing | DONE (active) | TVT landing complete, tracking configured, deployed |
 
 ### Current State
 - 1 product configured: `te-vas-a-transformar` (Método TVT)
 - All components built and ready
-- Build passes successfully (2 pages: dashboard + TVT landing)
-- Internal dashboard built (shows TVT product with draft status)
-- TVT landing page: COMPLETE (draft, no tracking IDs yet)
+- Build passes successfully (4 pages: dashboard + TVT landing + privacy + terms)
+- Internal dashboard built (shows TVT product with active status)
+- TVT landing page: COMPLETE (active, tracking configured)
+- Legal pages: privacy policy + terms of use created
+- GitHub repo: `https://github.com/Juanlpa/hotmart-landing.git`
 
 ### Product: Te Vas a Transformar (Método TVT)
 - **Slug**: `te-vas-a-transformar`
-- **Affiliate Link**: `https://go.hotmart.com/B104856016O`
+- **Affiliate Link**: `https://go.hotmart.com/B104856016O?ap=c333`
 - **Price**: $30 USD (was $444 — 93% off)
 - **Theme**: Dark (#0a0a0a bg, #833cf6 purple, #22C55E green CTAs)
 - **Font**: Space Grotesk (Google Fonts)
 - **Countdown**: Evergreen 2hr timer
-- **Tracking**: Not configured yet (needs FB Pixel, GA4, GTM, Hotmart Pixel IDs)
+- **Tracking**: FB Pixel (`923323780292437`), GA4 (`G-7JJLETEVKX`), GTM (`GTM-KSW88Z8L`), Hotmart Pixel (configured on platform)
+- **OG Image**: `/images/te-vas-a-transformar/og.webp` (123KB)
+- **Status**: `active`
 - **Page file**: `src/pages/te-vas-a-transformar/index.astro`
-- **Sections**: Hero, Pain Points, Solution Reveal, What's Included (11 items), Pricing, Countdown, Testimonials, Guarantee, Final CTA, FAQ, Footer + overlays (SocialProof, FloatingCTA, ExitIntentModal)
+- **Legal pages**: `privacidad.astro`, `terminos.astro`
+- **Sections**: Mobile Hero Image, Hero, Pain Points, Solution Reveal, Meet Your Coach, What's Included (11 items), Pricing, Countdown, Testimonials (before/after + text), Guarantee, Final CTA, FAQ, Footer + overlays (SocialProof, FloatingCTA, ExitIntentModal)
+- **Assets**: 9 optimized images in `public/images/te-vas-a-transformar/assets/` (~1MB total)
 
 ---
 

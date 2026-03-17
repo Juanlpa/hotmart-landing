@@ -28,20 +28,28 @@ export interface TrackingEventData {
 export function fireTrackingEvent(data: TrackingEventData): void {
   // Facebook Pixel
   if (typeof window !== 'undefined' && (window as any).fbq) {
-    (window as any).fbq('track', data.event, {
-      content_name: data.contentName,
-      value: data.value,
-      currency: data.currency,
-    });
+    const fbPayload: Record<string, any> = {};
+    if (data.contentName) fbPayload.content_name = data.contentName;
+    if (data.value !== undefined) fbPayload.value = data.value;
+    if (data.currency) fbPayload.currency = data.currency;
+
+    if (Object.keys(fbPayload).length > 0) {
+      (window as any).fbq('track', data.event, fbPayload);
+    } else {
+      (window as any).fbq('track', data.event);
+    }
   }
 
   // Google Analytics 4
   if (typeof window !== 'undefined' && (window as any).gtag) {
-    (window as any).gtag('event', data.event, {
+    const gaPayload: Record<string, any> = {
       event_category: 'conversion',
-      event_label: data.productSlug,
-      value: data.value,
-    });
+    };
+    if (data.productSlug) gaPayload.event_label = data.productSlug;
+    if (data.value !== undefined) gaPayload.value = data.value;
+    if (data.currency) gaPayload.currency = data.currency;
+
+    (window as any).gtag('event', data.event, gaPayload);
   }
 
   // Hotmart Pixel
