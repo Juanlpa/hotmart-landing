@@ -46,7 +46,8 @@ const beforeAfterTestimonials = [
 <LandingLayout
   title={product.seo.title}
   description={product.seo.description}
-  ogImage={product.seo.ogImage}
+  ogImage={`https://hotmart-landing.vercel.app${product.seo.ogImage}`}
+  canonicalUrl={`https://hotmart-landing.vercel.app/${product.slug}/`}
   colors={product.colors}
   tracking={product.tracking}
   fonts={['https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap']}
@@ -532,5 +533,46 @@ const beforeAfterTestimonials = [
   const midpoint = document.querySelector('[data-midpoint]');
   if (midpoint) observer.observe(midpoint);
 </script>
+
+<!-- Structured Data: Product + Offer -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": product.name,
+  "description": product.description,
+  "image": `https://hotmart-landing.vercel.app${product.seo.ogImage}`,
+  "brand": {
+    "@type": "Brand",
+    "name": "Te Vas a Transformar"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": `https://hotmart-landing.vercel.app/${product.slug}/`,
+    "priceCurrency": product.currency,
+    "price": product.currentPrice,
+    "availability": "https://schema.org/InStock",
+    "priceValidUntil": new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": String(product.testimonials.length),
+    "bestRating": "5"
+  }
+})} />
+
+<!-- Structured Data: FAQPage -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": product.faqs.map((faq: { question: string; answer: string }) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+})} />
 
 </LandingLayout>

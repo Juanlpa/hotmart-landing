@@ -227,6 +227,7 @@ Located in `.claude/skills/`:
 | `conversion-optimizer` | Improving conversion rate of existing landing |
 | `stitch-to-astro` | Converting a Stitch design to Astro components |
 | `tracking-integrator` | Setting up or debugging tracking pixels |
+| `vercel-deployer` | Deploying, configuring domains, Vercel management |
 
 ---
 
@@ -238,7 +239,8 @@ Located in `.claude/skills/`:
 | 2. Base components | DONE | All React + Astro + tracking components |
 | 3. Landing content | IN PROGRESS | TVT landing built, more products pending |
 | 4. Custom skills | DONE | 4 skills in .claude/skills/ |
-| 5. First real landing | DONE (active) | TVT landing complete, tracking configured, deployed |
+| 5. First real landing | DONE (active) | TVT landing complete, tracking configured, deployed to Vercel |
+| 6. SEO setup | DONE | Google Search Console verified, indexation requested |
 
 ### Current State
 - 1 product configured: `te-vas-a-transformar` (Método TVT)
@@ -250,6 +252,8 @@ Located in `.claude/skills/`:
 - GitHub repo: `https://github.com/Juanlpa/hotmart-landing.git`
 - **Vercel URL**: `https://hotmart-landing.vercel.app/`
 - **Deployed**: auto-deploy on push to `main`
+- **Google Search Console**: verified (meta tag in LandingLayout.astro)
+- **Custom Skills**: 5 (landing-builder, conversion-optimizer, stitch-to-astro, tracking-integrator, vercel-deployer)
 
 ### Product: Te Vas a Transformar (Método TVT)
 - **Slug**: `te-vas-a-transformar`
