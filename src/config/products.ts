@@ -143,11 +143,11 @@ export const products: Record<string, HotmartProduct> = {
     seo: {
       title: 'Método TVT — Pierde hasta 5kg en 30 días | Te Vas a Transformar',
       description: 'Programa de transformación de 30 días para mujeres. Plan de alimentación, entrenamiento guiado y seguimiento personalizado. 93% de descuento por tiempo limitado.',
-      ogImage: '/images/te-vas-a-transformar/og.jpg',
+      ogImage: '/images/te-vas-a-transformar/og.webp',
     },
     countdown: { enabled: true, evergreen: true, hours: 2 },
-    status: 'draft',
-    notes: 'Primera landing del proyecto. Sin tracking IDs configurados aún.',
+    status: 'active',
+    notes: 'Primera landing del proyecto. Tracking configurado: FB Pixel, GA4, GTM.',
   },
 };
 

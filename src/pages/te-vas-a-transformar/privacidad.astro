@@ -1,0 +1,62 @@
+---
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import { getProduct } from '../../config/products';
+
+const product = getProduct('te-vas-a-transformar')!;
+---
+
+<LandingLayout
+  title={`Política de Privacidad — ${product.name}`}
+  description={`Política de privacidad del sitio ${product.name}.`}
+  colors={product.colors}
+  fonts={['https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap']}
+>
+
+<style>
+  body { font-family: 'Space Grotesk', sans-serif; }
+</style>
+
+<main class="min-h-screen py-20 px-4">
+  <div class="container mx-auto max-w-3xl">
+    <a href="/te-vas-a-transformar/" class="text-[#833cf6] hover:underline text-sm mb-8 inline-block">&larr; Volver a la página principal</a>
+
+    <h1 class="text-3xl md:text-4xl font-bold text-white mb-8">Política de Privacidad</h1>
+
+    <div class="prose prose-invert prose-gray max-w-none space-y-6 text-gray-300 leading-relaxed">
+      <p><strong class="text-white">Última actualización:</strong> Marzo 2026</p>
+
+      <h2 class="text-xl font-bold text-white mt-8">1. Información que recopilamos</h2>
+      <p>Cuando visitas nuestro sitio, podemos recopilar cierta información de forma automática, incluyendo tu dirección IP, tipo de navegador, páginas visitadas y tiempo de permanencia. Si realizas una compra, la transacción es procesada directamente por <strong class="text-white">Hotmart</strong>, quien actúa como procesador de pagos. No almacenamos datos de tarjetas de crédito ni información financiera en nuestros servidores.</p>
+
+      <h2 class="text-xl font-bold text-white mt-8">2. Uso de la información</h2>
+      <p>La información recopilada se utiliza para:</p>
+      <ul class="list-disc pl-6 space-y-2">
+        <li>Mejorar la experiencia del usuario en nuestro sitio</li>
+        <li>Analizar el tráfico y el comportamiento de los visitantes</li>
+        <li>Mostrar anuncios relevantes a través de plataformas de terceros</li>
+        <li>Enviar comunicaciones relacionadas con el producto adquirido</li>
+      </ul>
+
+      <h2 class="text-xl font-bold text-white mt-8">3. Cookies y tecnologías de seguimiento</h2>
+      <p>Utilizamos cookies y tecnologías similares, incluyendo:</p>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong class="text-white">Google Analytics</strong> — para analizar el tráfico del sitio</li>
+        <li><strong class="text-white">Google Tag Manager</strong> — para gestionar etiquetas de seguimiento</li>
+        <li><strong class="text-white">Facebook Pixel (Meta)</strong> — para medir la efectividad de anuncios</li>
+        <li><strong class="text-white">Hotmart</strong> — para el seguimiento de conversiones de venta</li>
+      </ul>
+      <p>Puedes desactivar las cookies desde la configuración de tu navegador, aunque esto puede afectar la funcionalidad del sitio.</p>
+
+      <h2 class="text-xl font-bold text-white mt-8">4. Compartir información con terceros</h2>
+      <p>No vendemos ni compartimos tu información personal con terceros, excepto cuando es necesario para procesar tu compra (a través de Hotmart) o cuando la ley lo requiera.</p>
+
+      <h2 class="text-xl font-bold text-white mt-8">5. Derechos del usuario</h2>
+      <p>Tienes derecho a solicitar acceso, corrección o eliminación de tus datos personales. Para ejercer estos derechos, puedes contactarnos a través de los canales disponibles en la plataforma Hotmart.</p>
+
+      <h2 class="text-xl font-bold text-white mt-8">6. Cambios a esta política</h2>
+      <p>Nos reservamos el derecho de actualizar esta política en cualquier momento. Los cambios serán publicados en esta página con la fecha de última actualización.</p>
+    </div>
+  </div>
+</main>
+
+</LandingLayout>

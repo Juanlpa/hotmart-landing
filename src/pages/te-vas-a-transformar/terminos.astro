@@ -1,0 +1,55 @@
+---
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import { getProduct } from '../../config/products';
+
+const product = getProduct('te-vas-a-transformar')!;
+---
+
+<LandingLayout
+  title={`Términos de Uso — ${product.name}`}
+  description={`Términos y condiciones de uso del sitio ${product.name}.`}
+  colors={product.colors}
+  fonts={['https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap']}
+>
+
+<style>
+  body { font-family: 'Space Grotesk', sans-serif; }
+</style>
+
+<main class="min-h-screen py-20 px-4">
+  <div class="container mx-auto max-w-3xl">
+    <a href="/te-vas-a-transformar/" class="text-[#833cf6] hover:underline text-sm mb-8 inline-block">&larr; Volver a la página principal</a>
+
+    <h1 class="text-3xl md:text-4xl font-bold text-white mb-8">Términos de Uso</h1>
+
+    <div class="prose prose-invert prose-gray max-w-none space-y-6 text-gray-300 leading-relaxed">
+      <p><strong class="text-white">Última actualización:</strong> Marzo 2026</p>
+
+      <h2 class="text-xl font-bold text-white mt-8">1. Aceptación de los términos</h2>
+      <p>Al acceder y utilizar este sitio web, aceptas cumplir con estos términos de uso. Si no estás de acuerdo con alguno de estos términos, te recomendamos no utilizar el sitio.</p>
+
+      <h2 class="text-xl font-bold text-white mt-8">2. Descripción del producto</h2>
+      <p><strong class="text-white">{product.name}</strong> es un programa digital de transformación física de 30 días que incluye planes de alimentación, rutinas de entrenamiento y seguimiento personalizado. El producto es vendido y entregado a través de la plataforma <strong class="text-white">Hotmart</strong>.</p>
+
+      <h2 class="text-xl font-bold text-white mt-8">3. Proceso de compra</h2>
+      <p>Todas las transacciones son procesadas de forma segura por Hotmart. Al realizar una compra, aceptas también los términos de servicio de Hotmart como plataforma de pago y distribución digital.</p>
+
+      <h2 class="text-xl font-bold text-white mt-8">4. Política de reembolso</h2>
+      <p>Ofrecemos una garantía de <strong class="text-white">{product.guaranteeDays} días</strong> a partir de la fecha de compra. Si dentro de ese período consideras que el producto no cumple con tus expectativas, puedes solicitar un reembolso completo directamente a través de la plataforma Hotmart, sin preguntas.</p>
+
+      <h2 class="text-xl font-bold text-white mt-8">5. Resultados</h2>
+      <p>Los resultados mostrados en testimonios y casos de éxito son reales pero individuales. Los resultados pueden variar de persona a persona dependiendo de factores como el cumplimiento del programa, condición física inicial, alimentación y otros factores personales. No garantizamos resultados específicos.</p>
+
+      <h2 class="text-xl font-bold text-white mt-8">6. Propiedad intelectual</h2>
+      <p>Todo el contenido del programa (videos, guías, planes, materiales) es propiedad de {product.name} y está protegido por derechos de autor. Queda prohibida su reproducción, distribución o reventa sin autorización expresa.</p>
+
+      <h2 class="text-xl font-bold text-white mt-8">7. Limitación de responsabilidad</h2>
+      <p>Este programa es de carácter informativo y educativo. No sustituye el consejo médico profesional. Recomendamos consultar con un profesional de la salud antes de iniciar cualquier programa de ejercicio o plan de alimentación.</p>
+
+      <h2 class="text-xl font-bold text-white mt-8">8. Modificaciones</h2>
+      <p>Nos reservamos el derecho de modificar estos términos en cualquier momento. Las modificaciones entrarán en vigor inmediatamente después de su publicación en esta página.</p>
+    </div>
+  </div>
+</main>
+
+</LandingLayout>
