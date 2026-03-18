@@ -37,9 +37,9 @@ const includedIcons: Record<string, string> = {
 };
 
 const beforeAfterTestimonials = [
-  { name: 'Andreina Rodriguez', image: `${imgBase}/resultado-andreina.jpg`, result: 'Día 1 vs Día 28' },
-  { name: 'Enly Krisbell', image: `${imgBase}/resultado-enly.jpg`, result: 'Transformación completa' },
-  { name: 'Santiago Diaz', image: `${imgBase}/resultado-santiago.jpg`, result: 'Resultados en 30 días' },
+  { name: 'Andreina Rodriguez', image: `${imgBase}/resultado-andreina.webp`, result: 'Día 1 vs Día 28' },
+  { name: 'Enly Krisbell', image: `${imgBase}/resultado-enly.webp`, result: 'Transformación completa' },
+  { name: 'Santiago Diaz', image: `${imgBase}/resultado-santiago.webp`, result: 'Resultados en 30 días' },
 ];
 ---
 
@@ -48,7 +48,7 @@ const beforeAfterTestimonials = [
   description={product.seo.description}
   ogImage={`https://hotmart-landing.vercel.app${product.seo.ogImage}`}
   canonicalUrl={`https://hotmart-landing.vercel.app/${product.slug}/`}
-  preloadImage={`${imgBase}/coach-action.jpg`}
+  preloadImage={`${imgBase}/coach-action.webp`}
   colors={product.colors}
   tracking={product.tracking}
   fonts={['https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap']}
@@ -61,13 +61,13 @@ const beforeAfterTestimonials = [
 <!-- ===== MOBILE HERO IMAGE (full-width, above hero) ===== -->
 <div class="md:hidden relative w-full">
   <img
-    src={`${imgBase}/logo-white.png`}
+    src={`${imgBase}/logo-white.webp`}
     alt="Te Vas a Transformar"
     class="absolute top-6 left-1/2 -translate-x-1/2 z-10 h-16 lg:h-20 w-auto max-w-[80%] object-contain drop-shadow-xl opacity-100"
     loading="eager"
   />
   <img
-    src={`${imgBase}/coach-action.jpg`}
+    src={`${imgBase}/coach-action.webp`}
     alt="Coach del Método TVT"
     class="w-full aspect-[3/2] object-cover object-top"
     loading="eager"
@@ -129,7 +129,7 @@ const beforeAfterTestimonials = [
       <div class="hidden md:block relative">
         <div class="absolute -inset-4 bg-gradient-to-br from-[#833cf6]/20 to-transparent rounded-3xl blur-2xl"></div>
         <img
-          src={`${imgBase}/equipo.jpg`}
+          src={`${imgBase}/equipo.webp`}
           alt="Equipo de entrenamiento del programa Te Vas a Transformar"
           class="relative rounded-2xl w-full object-cover shadow-2xl border border-white/5"
           loading="lazy"
@@ -185,7 +185,7 @@ const beforeAfterTestimonials = [
       <div class="absolute -inset-3 bg-gradient-to-r from-[#833cf6] to-purple-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
       <div class="relative glass-card rounded-2xl p-8 md:p-12 flex flex-col items-center gap-6">
         <img
-          src={`${imgBase}/logo-white.png`}
+          src={`${imgBase}/logo-white.webp`}
           alt="Logo Te Vas a Transformar"
           class="h-16 md:h-24 w-auto opacity-90"
           loading="lazy"
@@ -207,7 +207,7 @@ const beforeAfterTestimonials = [
       <div class="relative">
         <div class="absolute -inset-4 bg-gradient-to-br from-[#833cf6]/20 to-transparent rounded-3xl blur-2xl"></div>
         <img
-          src={`${imgBase}/coach-action.jpg`}
+          src={`${imgBase}/coach-action.webp`}
           alt="Coach del Método TVT entrenando"
           class="relative rounded-2xl w-full object-cover shadow-2xl border border-white/5"
           loading="lazy"
@@ -249,7 +249,7 @@ const beforeAfterTestimonials = [
     <div class="mt-16 relative">
       <div class="absolute -inset-2 bg-gradient-to-r from-[#833cf6]/10 to-transparent rounded-2xl blur-xl"></div>
       <img
-        src={`${imgBase}/equipo-completo.jpg`}
+        src={`${imgBase}/equipo-completo.webp`}
         alt="Equipo completo de coaches y participantes del Método TVT"
         class="relative rounded-2xl w-full object-cover shadow-xl border border-white/5 max-h-[400px] object-top"
         loading="lazy"
@@ -471,7 +471,7 @@ const beforeAfterTestimonials = [
 <footer class="py-12 px-6 border-t border-white/5 bg-zinc-950">
   <div class="container mx-auto max-w-6xl text-center">
     <img
-      src={`${imgBase}/logo-white.png`}
+      src={`${imgBase}/logo-white.webp`}
       alt="Logo Método TVT - Te Vas a Transformar"
       class="h-8 w-auto mx-auto mb-6 opacity-60"
       loading="lazy"
