@@ -312,14 +312,17 @@ const beforeAfterTestimonials = [
         <span class="text-xl font-bold text-white">{product.currency}</span>
       </div>
 
-      <a
+      <CTAButton
+        client:visible
         href={affiliateUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="block w-full py-6 bg-[#22C55E] hover:bg-[#16a34a] text-white text-xl md:text-2xl font-black rounded-2xl transition-all transform hover:scale-[1.02] shadow-[0_10px_40px_rgba(34,197,94,0.3)] mb-6 text-center animate-glow-green"
-      >
-        ¡ACCEDER AL MÉTODO TVT AHORA!
-      </a>
+        text="¡ACCEDER AL MÉTODO TVT AHORA!"
+        size="xl"
+        variant="primary"
+        pulse={false}
+        glow={false}
+        productSlug={product.slug}
+        className="!w-full !py-6 !bg-[#22C55E] hover:!bg-[#16a34a] !text-xl md:!text-2xl !font-black !rounded-2xl !shadow-[0_10px_40px_rgba(34,197,94,0.3)] !mb-6 animate-glow-green"
+      />
 
       <div class="flex flex-wrap justify-center gap-6 text-gray-400 text-sm">
         <span class="flex items-center gap-2">
@@ -505,6 +508,7 @@ const beforeAfterTestimonials = [
   client:idle
   href={affiliateUrl}
   text="¡TRANSFORMARME AHORA!"
+  productSlug={product.slug}
   className="!bg-zinc-900/95 !border-t !border-white/10"
 />
 

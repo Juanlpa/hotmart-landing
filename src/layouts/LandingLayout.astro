@@ -108,10 +108,20 @@ const bodyText = isDark ? '#f3f4f6' : '#111827';
   >
     <slot />
 
-    <!-- UTM capture script -->
+    <!-- UTM capture + inject into Hotmart links -->
     <script>
       import { captureUtmParams } from '../utils/utm';
       captureUtmParams();
+
+      // Rewrite all Hotmart links with captured UTMs (client-side fix for SSG)
+      const utms = JSON.parse(sessionStorage.getItem('hotmart_utm_params') || '{}');
+      if (Object.keys(utms).length > 0) {
+        document.querySelectorAll('a[href*="go.hotmart.com"]').forEach((link) => {
+          const url = new URL((link as HTMLAnchorElement).href);
+          Object.entries(utms).forEach(([k, v]) => url.searchParams.set(k, v as string));
+          (link as HTMLAnchorElement).href = url.toString();
+        });
+      }
     </script>
   </body>
 </html>

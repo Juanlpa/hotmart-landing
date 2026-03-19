@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
+import { fireTrackingEvent } from '../../config/tracking';
 
 interface FloatingCTAProps {
   href: string;
   text?: string;
   showAfterPx?: number;
   className?: string;
+  productSlug?: string;
 }
 
 export default function FloatingCTA({
@@ -14,6 +16,7 @@ export default function FloatingCTA({
   text = '¡COMPRAR AHORA!',
   showAfterPx = 600,
   className,
+  productSlug,
 }: FloatingCTAProps) {
   const [visible, setVisible] = useState(false);
 
@@ -25,6 +28,14 @@ export default function FloatingCTA({
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [showAfterPx]);
+
+  const handleClick = () => {
+    fireTrackingEvent({
+      event: 'InitiateCheckout',
+      productSlug,
+      contentName: text,
+    });
+  };
 
   return (
     <AnimatePresence>
@@ -44,6 +55,7 @@ export default function FloatingCTA({
               href={href}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={handleClick}
               className="block w-full bg-green-500 hover:bg-green-600 text-white text-center font-bold text-lg py-3.5 rounded-xl transition-colors"
             >
               {text}
@@ -62,6 +74,7 @@ export default function FloatingCTA({
               href={href}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={handleClick}
               className="group flex items-center gap-3 bg-[#22C55E] hover:bg-[#16a34a] text-white font-bold py-4 px-5 rounded-2xl transition-all shadow-[0_0_25px_rgba(34,197,94,0.4)] hover:shadow-[0_0_35px_rgba(34,197,94,0.6)] hover:scale-105"
             >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 flex-shrink-0 group-hover:translate-x-0.5 transition-transform">

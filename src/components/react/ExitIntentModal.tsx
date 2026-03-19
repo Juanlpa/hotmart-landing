@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { fireTrackingEvent } from '../../config/tracking';
 
 interface ExitIntentModalProps {
   headline?: string;
@@ -33,6 +34,7 @@ export default function ExitIntentModal({
         setShow(true);
         sessionStorage.setItem(storageKey, 'true');
         document.removeEventListener('mouseleave', handler);
+        fireTrackingEvent({ event: 'Lead', productSlug, contentName: 'exit_intent_modal' });
       }
     };
 
@@ -78,6 +80,7 @@ export default function ExitIntentModal({
               href={ctaHref}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => fireTrackingEvent({ event: 'InitiateCheckout', productSlug, contentName: ctaText })}
               className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold text-lg px-8 py-4 rounded-xl transition-colors animate-pulse-cta"
             >
               {ctaText}
