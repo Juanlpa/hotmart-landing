@@ -108,19 +108,51 @@ const bodyText = isDark ? '#f3f4f6' : '#111827';
   >
     <slot />
 
-    <!-- UTM capture + inject into Hotmart links -->
+    <!-- UTM capture + inject into Hotmart links (including React-hydrated) -->
     <script>
       import { captureUtmParams } from '../utils/utm';
       captureUtmParams();
 
-      // Rewrite all Hotmart links with captured UTMs (client-side fix for SSG)
-      const utms = JSON.parse(sessionStorage.getItem('hotmart_utm_params') || '{}');
-      if (Object.keys(utms).length > 0) {
-        document.querySelectorAll('a[href*="go.hotmart.com"]').forEach((link) => {
-          const url = new URL((link as HTMLAnchorElement).href);
-          Object.entries(utms).forEach(([k, v]) => url.searchParams.set(k, v as string));
-          (link as HTMLAnchorElement).href = url.toString();
+      function injectUtmsIntoHotmartLinks(root: ParentNode = document) {
+        const utms = JSON.parse(sessionStorage.getItem('hotmart_utm_params') || '{}');
+        if (Object.keys(utms).length === 0) return;
+
+        root.querySelectorAll('a[href*="go.hotmart.com"]').forEach((link) => {
+          const anchor = link as HTMLAnchorElement;
+          const url = new URL(anchor.href);
+          // Only inject if not already present
+          if (!url.searchParams.has('utm_source')) {
+            Object.entries(utms).forEach(([k, v]) => url.searchParams.set(k, v as string));
+            anchor.href = url.toString();
+          }
         });
+      }
+
+      // 1. Rewrite existing links immediately
+      injectUtmsIntoHotmartLinks();
+
+      // 2. Watch for React-hydrated components that add links after initial load
+      const utmsExist = Object.keys(JSON.parse(sessionStorage.getItem('hotmart_utm_params') || '{}')).length > 0;
+      if (utmsExist) {
+        const observer = new MutationObserver((mutations) => {
+          for (const mutation of mutations) {
+            for (const node of mutation.addedNodes) {
+              if (node instanceof HTMLElement) {
+                // Check the added node itself and its descendants
+                if (node.matches?.('a[href*="go.hotmart.com"]')) {
+                  injectUtmsIntoHotmartLinks(node.parentNode || document);
+                } else if (node.querySelector?.('a[href*="go.hotmart.com"]')) {
+                  injectUtmsIntoHotmartLinks(node);
+                }
+              }
+            }
+          }
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        // Auto-disconnect after 30s (all React hydration should be done by then)
+        setTimeout(() => observer.disconnect(), 30000);
       }
     </script>
   </body>

@@ -1,7 +1,7 @@
 # AI AGENT CONTEXT — Hotmart Landings Project
 
 > **Purpose**: This file is the single source of truth for any AI agent working on this project. Read this ENTIRELY before executing any task. It eliminates the need to scan the full codebase.
-> **Last updated**: 2026-03-17
+> **Last updated**: 2026-03-19
 
 ---
 
@@ -171,17 +171,18 @@ interface HotmartProduct {
 |---|---|---|
 | PageView | Page load | Facebook Pixel (auto), GA4 (auto) |
 | ViewContent | 50% scroll | Custom script in landing page |
-| InitiateCheckout | CTA click | CTAButton.tsx (built-in) |
-| Lead | Form interaction | Custom (if applicable) |
+| InitiateCheckout | CTA click | CTAButton.tsx, FloatingCTA.tsx, ExitIntentModal.tsx |
+| Lead | Exit intent modal shown | ExitIntentModal.tsx |
 | AddToCart | Price modal shown | Custom |
 
 ### UTM Flow
 ```
 Ad URL ?utm_source=facebook&utm_medium=cpc&utm_campaign=launch
   → captureUtmParams() saves to sessionStorage
-  → buildAffiliateLink() appends UTMs to Hotmart pay link
-  → Hotmart receives UTMs for attribution
+  → Client-side script in LandingLayout rewrites all go.hotmart.com links with UTMs
+  → User clicks any CTA → Hotmart receives UTMs for attribution
 ```
+**Note**: UTM injection happens client-side (not at build time) because SSG has no access to sessionStorage.
 
 ---
 
@@ -246,6 +247,8 @@ Located in `.claude/skills/`:
 | 4. Custom skills | DONE | 4 skills in .claude/skills/ |
 | 5. First real landing | DONE (active) | TVT landing complete, tracking configured, deployed to Vercel |
 | 6. SEO setup | DONE | Search Console verified, structured data (Product+FAQ), sitemap, robots.txt, favicon, LCP preload |
+| 7. Tracking fixes | DONE | Fixed UTM client-side injection, added tracking to FloatingCTA + ExitIntentModal + Pricing CTA |
+| 8. Ads campaign | READY | $30 USD validation campaign planned (Meta Ads, 2 ad sets, 6 days) |
 
 ### Current State
 - 1 product configured: `te-vas-a-transformar` (Método TVT)
@@ -289,8 +292,38 @@ npm run preview    # Preview built site locally
 
 ---
 
-## 12. FUTURE ROADMAP (not yet implemented)
+## 12. ADS CAMPAIGN PLAN (Next Action)
 
+**Status**: READY TO LAUNCH — all tracking fixes deployed
+**Budget**: $30 USD total ($5/day x 6 days)
+**Objective**: Validation — can this product + landing convert cold traffic?
+
+| Item | Detail |
+|---|---|
+| Platform | Meta Ads (Instagram Reels/Stories + Facebook Feed) |
+| Objective | Traffic (Link Clicks) — NOT Conversions |
+| Structure | 2 ad sets ABO: "Dolor" ($2.50/day) + "Transformación" ($2.50/day) |
+| Audience | Women 25-55, MX+CO+PE+EC+CL, broad (no interests) |
+| Creatives | Static images via Canva (brand colors, $0 budget) |
+| Duration | 6 days |
+| Success metric | 1+ sale from 50-200 visitors = VIABLE |
+| Plan file | `.claude/plans/immutable-tumbling-ullman.md` |
+
+### Pre-launch checklist
+- [x] Fix UTM client-side injection (BUG: ran at build time)
+- [x] Add tracking to FloatingCTA (primary mobile CTA)
+- [x] Add tracking to ExitIntentModal (Lead + InitiateCheckout)
+- [x] Replace raw `<a>` in pricing section with CTAButton
+- [ ] Verify tracking with Meta Pixel Helper on live URL
+- [ ] Verify GA4 Realtime events
+- [ ] Create ad creatives in Canva
+- [ ] Set up campaign in Meta Ads Manager
+
+---
+
+## 13. FUTURE ROADMAP (not yet implemented)
+
+- Server-side tracking (CAPI) via Vercel Serverless — when scaling past $200/day
 - Switch to `output: 'hybrid'` for server-side dashboard features
 - Hotmart API integration for sales data
 - Google Analytics API for traffic data in dashboard
